@@ -9,10 +9,19 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.beee.sample" />
-	<bean id="jedisFactory"
+<!-- 	<bean id="jedisFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" />
 
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-		p:connection-factory="jedisFactory" />
+		p:connection-factory="jedisFactory" /> -->
+		
+		<!-- Jedis Connection -->    
+<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+   p:host-name="127.0.0.1" p:port="6379" />
+  
+<!-- Redis Template -->
+<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+	<property name="connectionFactory" ref="jedisConnectionFactory" />
+</bean>
 
-</beans>
+</beans>	
