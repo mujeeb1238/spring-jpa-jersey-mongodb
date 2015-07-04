@@ -37,8 +37,6 @@ public class BeeeResourceApi {
 	public Response sayHello(){
 		//listOps.leftPush("1238", "Syed Mujeeb ur Rahman");
 		 template.opsForValue().set("1238", "Syed Mujeeb ur Rahman opts for value11");
-        // or use template directly
-        //redisTemplate.boundListOps("1238").leftPush("Hellow world");
         System.out.println(template.opsForValue().get("1238"));
 		return Response.status(Status.OK).entity(service.sayHello()).build();
 	}
