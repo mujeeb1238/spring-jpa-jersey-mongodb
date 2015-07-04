@@ -1,28 +1,34 @@
 package com.beee.sample.api;
 
-import javax.ws.rs.GET;
+import javax.annotation.Resource;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import com.beee.sample.data.UserData;
 import com.beee.sample.services.BeeeMainService;
 
 
 @Component
-@Path("home")
+@Path("beee")
 public class BeeeResourceApi {
 
 	
 	private final BeeeMainService service;
 	private final RedisTemplate<String, String> template;
 	
-	/*@Resource(name="template")
+	@Resource(name="template")
     private ListOperations<String, String> listOps;
-	
+	/*
 	@Resource(name="template")
 	private ValueOperations<String, Integer> intOp;*/
 	
@@ -32,12 +38,14 @@ public class BeeeResourceApi {
 		this.template = template;
 	}
 	
-	@GET
-	@Path("/sayhello")
-	public Response sayHello(){
-		//listOps.leftPush("1238", "Syed Mujeeb ur Rahman");
-		 template.opsForValue().set("1238", "Syed Mujeeb ur Rahman opts for value11");
-        System.out.println(template.opsForValue().get("1238"));
-		return Response.status(Status.OK).entity(service.sayHello()).build();
+	@POST
+	@Path("/registerUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response sayHello(final String jsonBody){
+		
+		String ud = service.convertAndProcess(jsonBody);
+		
+		return Response.status(Status.OK).entity(ud).build();
 	}
 }
