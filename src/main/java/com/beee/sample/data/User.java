@@ -1,6 +1,9 @@
 package com.beee.sample.data;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+	
 	
 	private String contactNumber;
 	private String name;

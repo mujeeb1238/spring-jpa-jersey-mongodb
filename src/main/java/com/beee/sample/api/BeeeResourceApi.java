@@ -26,13 +26,6 @@ public class BeeeResourceApi {
 	private final BeeeMainService service;
 	private final RedisTemplate<String, String> template;
 	
-	/*
-    @Resource(name="template")
-    private ListOperations<String, String> listOps;
-	
-	@Resource(name="template")
-	private ValueOperations<String, Integer> intOp;*/
-	
 	@Autowired
 	public BeeeResourceApi(final BeeeMainService service, RedisTemplate<String, String> template) {
 		this.service = service;
