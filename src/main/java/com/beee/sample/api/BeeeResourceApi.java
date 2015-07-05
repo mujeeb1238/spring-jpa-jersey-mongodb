@@ -1,6 +1,5 @@
 package com.beee.sample.api;
 
-import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,11 +9,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.beee.sample.data.UserData;
 import com.beee.sample.services.BeeeMainService;
 
 
@@ -24,12 +20,10 @@ public class BeeeResourceApi {
 
 	
 	private final BeeeMainService service;
-	private final RedisTemplate<String, String> template;
 	
 	@Autowired
-	public BeeeResourceApi(final BeeeMainService service, RedisTemplate<String, String> template) {
+	public BeeeResourceApi(final BeeeMainService service) {
 		this.service = service;
-		this.template = template;
 	}
 	
 	@POST

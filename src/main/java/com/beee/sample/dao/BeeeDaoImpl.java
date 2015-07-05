@@ -3,7 +3,7 @@ package com.beee.sample.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.beee.sample.data.User;
@@ -12,11 +12,11 @@ import com.beee.sample.data.User;
 public class BeeeDaoImpl implements BeeeDao{
 
 	@Autowired
-	private RedisTemplate<String, User> template;
+	private MongoTemplate template;
 	
 	@Override
 	public User saveUser(User user) {
-		template.opsForHash().put(user.getContactNumber(), user.hashCode(), user);
+		template.save(user);
 		return user;
 	}
 
