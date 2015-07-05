@@ -1,9 +1,11 @@
 package com.beee.sample.api;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -36,4 +38,17 @@ public class BeeeResourceApi {
 		
 		return Response.status(Status.OK).entity(ud).build();
 	}
+	
+	@GET
+	@Path("/retrieveUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retrieveUser(final String jsonBody, @QueryParam("contactNumber") final String contactNumber){
+		
+		String ud = service.convertAndGet(contactNumber);
+		
+		return Response.status(Status.OK).entity(ud).build();
+	}
+	
+	
 }

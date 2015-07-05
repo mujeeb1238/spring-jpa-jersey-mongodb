@@ -7,12 +7,16 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.beee.sample.data.User;
+import com.beee.sample.repositories.UserRepository;
 
 @Service
 public class BeeeDaoImpl implements BeeeDao{
 
 	@Autowired
 	private MongoTemplate template;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Override
 	public User saveUser(User user) {
@@ -27,9 +31,8 @@ public class BeeeDaoImpl implements BeeeDao{
 	}
 
 	@Override
-	public List<User> findOne(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findOne(String contactNumber) {
+		return userRepository.findByContactNumber(contactNumber);
 	}
 
 }

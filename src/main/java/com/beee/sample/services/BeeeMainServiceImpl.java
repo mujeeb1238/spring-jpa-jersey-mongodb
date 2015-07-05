@@ -33,4 +33,9 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 	public String sayHello(){
 		return "Hello world";
 	}
+	
+	@Override
+	public String convertAndGet(String contactNumber) {
+		return GSON.toJson(beeeDao.findOne(contactNumber));
+	}
 }
