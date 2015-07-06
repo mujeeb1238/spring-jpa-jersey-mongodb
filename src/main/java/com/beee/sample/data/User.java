@@ -1,10 +1,14 @@
 package com.beee.sample.data;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Document(collection = "users")
 public class User implements Serializable {
@@ -14,14 +18,24 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	
+	
+	@Indexed
+	private String contactNumber;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	private Date createdDate;
 	@Id
 	private String id;
-	private String contactNumber;
-	private String name;
+	private Boolean isDeleted;
 	private String jobTitle;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	private Date modifiedDate;
+	private List<MutualContacts> mutualContacts;
+	private String name;
 	private String professionalSummary;
 	private String totalExperience;
-	private List<MutualContacts> mutualContacts;
+	
 
 	public User() {
 	}
@@ -35,6 +49,8 @@ public class User implements Serializable {
 		user.professionalSummary = professionalSummary;
 		user.totalExperience = totalExperience;
 		user.mutualContacts = mutualContacts;
+		user.createdDate = new Date();
+		user.isDeleted = false;
 		return user;
 	}
 
@@ -92,6 +108,14 @@ public class User implements Serializable {
 
 	public void setMutualContacts(List<MutualContacts> mutualContacts) {
 		this.mutualContacts = mutualContacts;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 	
