@@ -38,9 +38,6 @@ public class BeeeResourceApi {
 	public Response sayHello(final String jsonBody){
 		
 		String ud = service.convertAndProcess(jsonBody);
-		if(ud != null && ud.equalsIgnoreCase("uae")){
-			throw new UserAlreadyExistException("{'message':'user already exist','errorCode':'uaeE'}");
-		}
 		return Response.status(Status.OK).entity(ud).build();
 	}
 	

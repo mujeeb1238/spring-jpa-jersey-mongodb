@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.beee.sample.dao.BeeeDao;
 import com.beee.sample.data.User;
 import com.beee.sample.data.UserData;
+import com.beee.sample.exception.UserDefinedErrorMessage;
 import com.google.gson.Gson;
 
 @Service
@@ -29,7 +30,8 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 			User savedUser = beeeDao.saveUser(persistUser);
 			return GSON.toJson(new UserData(savedUser));
 		}
-		return "uae";
+		UserDefinedErrorMessage ud = new UserDefinedErrorMessage("user already exist", "entered contact number already exist", "500", "contactNumber");
+		return GSON.toJson(ud);
 	}
 	
 	@Override
