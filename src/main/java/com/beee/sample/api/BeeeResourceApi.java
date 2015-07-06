@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.beee.sample.exception.UserAlreadyExistException;
@@ -19,6 +20,7 @@ import com.beee.sample.services.BeeeMainService;
 
 @Component
 @Path("beee")
+@Scope("singleton")
 public class BeeeResourceApi {
 
 	
