@@ -43,7 +43,7 @@ public class BeeeResourceApi {
 	@Path("/retrieveUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response retrieveUser(final String jsonBody, @QueryParam("contactNumber") final String contactNumber){
+	public Response retrieveUser(@QueryParam("contactNumber") String contactNumber){
 		
 		String ud = service.convertAndGet(contactNumber);
 		
