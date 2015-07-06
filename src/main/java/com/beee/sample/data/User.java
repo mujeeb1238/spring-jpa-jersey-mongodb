@@ -41,7 +41,7 @@ public class User implements Serializable {
 	}
 
 	public static User fromJson(String contactNumber, String totalExperience,
-			String jobTitle, String name, String professionalSummary, List<MutualContacts> mutualContacts) {
+			String jobTitle, String name, String professionalSummary, List<MutualContacts> mutualContacts, Boolean isDeleted) {
 		User user = new User();
 		user.contactNumber = contactNumber;
 		user.name = name;
@@ -50,7 +50,7 @@ public class User implements Serializable {
 		user.totalExperience = totalExperience;
 		user.mutualContacts = mutualContacts;
 		user.createdDate = new Date();
-		user.isDeleted = false;
+		user.isDeleted = isDeleted;
 		return user;
 	}
 

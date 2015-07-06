@@ -81,7 +81,7 @@ public class UserData implements Serializable{
 		this.mutualContacts = mutualContacts;
 	}
 
-	public Boolean getIsDeleted() {
+	public Boolean isDeleted() {
 		return isDeleted;
 	}
 

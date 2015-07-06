@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.beee.sample.exception.UserAlreadyExistException;
 import com.beee.sample.services.BeeeMainService;
 
 
@@ -35,7 +36,9 @@ public class BeeeResourceApi {
 	public Response sayHello(final String jsonBody){
 		
 		String ud = service.convertAndProcess(jsonBody);
-		
+		if(ud != null && ud.equalsIgnoreCase("uae")){
+			throw new UserAlreadyExistException("{'message':'user already exist','errorCode':'uaeE'}");
+		}
 		return Response.status(Status.OK).entity(ud).build();
 	}
 	
