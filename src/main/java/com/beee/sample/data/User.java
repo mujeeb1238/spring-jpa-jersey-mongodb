@@ -49,7 +49,7 @@ public class User implements Serializable {
 		user.professionalSummary = professionalSummary;
 		user.totalExperience = totalExperience;
 		user.mutualContacts = mutualContacts;
-		user.createdDate = new Date();
+		user.setCreatedDate(new Date());
 		user.isDeleted = isDeleted;
 		return user;
 	}
@@ -116,6 +116,22 @@ public class User implements Serializable {
 
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 	
 	
