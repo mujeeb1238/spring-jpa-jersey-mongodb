@@ -8,5 +8,5 @@ import com.beee.sample.data.User;
 
 public interface UserRepository extends MongoRepository<User, String> {
 
-	List<User> findByContactNumber(String contactNumber);
+	User findByContactNumber(String contactNumber);
 }

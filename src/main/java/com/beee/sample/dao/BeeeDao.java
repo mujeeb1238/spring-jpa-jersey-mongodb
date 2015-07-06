@@ -8,5 +8,5 @@ public interface BeeeDao {
 
 	public User saveUser(User user);
 	public List<User> finaAllUser();
-	public List<User> findOne(String id);
+	public User findOne(String id);
 }

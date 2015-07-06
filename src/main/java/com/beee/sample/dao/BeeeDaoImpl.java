@@ -31,7 +31,7 @@ public class BeeeDaoImpl implements BeeeDao{
 	}
 
 	@Override
-	public List<User> findOne(String contactNumber) {
+	public User findOne(String contactNumber) {
 		return userRepository.findByContactNumber(contactNumber);
 	}
 
