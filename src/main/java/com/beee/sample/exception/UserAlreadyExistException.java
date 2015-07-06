@@ -16,6 +16,6 @@ public class UserAlreadyExistException extends WebApplicationException {
 	 * Create a HTTP 404 (Not Found) exception.
 	 */
 	public UserAlreadyExistException(final String message) {
-		super(Response.status(403).entity(message).type("text/plain").build());
+		super(Response.status(500).entity(message).type("application/json").build());
 	}
 }
