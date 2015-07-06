@@ -24,7 +24,7 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 	@Override
 	public String convertAndProcess(String json) {
 		UserData user = (UserData)GSON.fromJson(json, UserData.class);	
-		User persistUser =  User.fromJson(user.getContactNumber(), user.getTotalExperience(), user.getJobTitle(), user.getName(), user.getProfessionalSummary());
+		User persistUser =  User.fromJson(user.getContactNumber(), user.getTotalExperience(), user.getJobTitle(), user.getName(), user.getProfessionalSummary(),user.getMutualContacts());
 		User savedUser = beeeDao.saveUser(persistUser);
 		return GSON.toJson(new UserData(savedUser));
 	}

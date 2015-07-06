@@ -1,6 +1,7 @@
 package com.beee.sample.data;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,18 +21,20 @@ public class User implements Serializable {
 	private String jobTitle;
 	private String professionalSummary;
 	private String totalExperience;
+	private List<MutualContacts> mutualContacts;
 
 	public User() {
 	}
 
 	public static User fromJson(String contactNumber, String totalExperience,
-			String jobTitle, String name, String professionalSummary) {
+			String jobTitle, String name, String professionalSummary, List<MutualContacts> mutualContacts) {
 		User user = new User();
 		user.contactNumber = contactNumber;
 		user.name = name;
 		user.jobTitle = jobTitle;
 		user.professionalSummary = professionalSummary;
 		user.totalExperience = totalExperience;
+		user.mutualContacts = mutualContacts;
 		return user;
 	}
 
@@ -81,6 +84,14 @@ public class User implements Serializable {
 	
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public List<MutualContacts> getMutualContacts() {
+		return mutualContacts;
+	}
+
+	public void setMutualContacts(List<MutualContacts> mutualContacts) {
+		this.mutualContacts = mutualContacts;
 	}
 	
 	

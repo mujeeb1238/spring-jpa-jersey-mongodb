@@ -1,6 +1,7 @@
 package com.beee.sample.data;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserData implements Serializable{
 	private String contactNumber;
@@ -8,7 +9,7 @@ public class UserData implements Serializable{
 	private String professionalSummary;
 	private String totalExperience;
 	private String name;
-	
+	private List<MutualContacts> mutualContacts;
 	
 	public UserData() {
 		// TODO Auto-generated constructor stub
@@ -72,4 +73,16 @@ public class UserData implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+	public List<MutualContacts> getMutualContacts() {
+		return mutualContacts;
+	}
+
+
+	public void setMutualContacts(List<MutualContacts> mutualContacts) {
+		this.mutualContacts = mutualContacts;
+	}
+	
+	
 }
