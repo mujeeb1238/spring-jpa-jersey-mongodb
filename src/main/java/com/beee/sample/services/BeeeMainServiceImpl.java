@@ -11,6 +11,7 @@ import com.beee.sample.data.User;
 import com.beee.sample.data.UserData;
 import com.beee.sample.exception.UserDefinedErrorMessage;
 import com.google.gson.Gson;
+import org.springframework.cache.annotation.Cacheable;
 
 @Service
 public class BeeeMainServiceImpl implements BeeeMainService{
@@ -52,6 +53,7 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 		return "Hello world";
 	}
 	
+    @Cacheable("contactNumber")
 	@Override
 	public String convertAndGet(String contactNumber) {
 		return GSON.toJson(beeeDao.findOne(contactNumber));
