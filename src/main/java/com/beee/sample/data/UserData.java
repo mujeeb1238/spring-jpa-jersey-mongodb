@@ -1,6 +1,7 @@
 package com.beee.sample.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,18 @@ public class UserData implements Serializable{
 	private String 					totalExperience;
 	
 	public UserData() {
+		mutualContacts = new ArrayList<MutualContacts>();
 	}
 
 	public UserData(User s) {
+		this.contactNumber = s.getContactNumber();
+		this.jobTitle = s.getJobTitle();
+		this.professionalSummary = s.getProfessionalSummary();
+		this.totalExperience = s.getTotalExperience();
+		this.name = s.getName();
+	}
+	
+	public void createReturnData(User s){
 		this.contactNumber = s.getContactNumber();
 		this.jobTitle = s.getJobTitle();
 		this.professionalSummary = s.getProfessionalSummary();
