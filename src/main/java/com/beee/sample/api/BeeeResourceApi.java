@@ -19,7 +19,6 @@ import jersey.repackaged.com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import org.glassfish.jersey.process.JerseyProcessingUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.beee.sample.services.BeeeMainService;
