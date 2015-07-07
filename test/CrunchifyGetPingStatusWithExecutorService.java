@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
  
 public class CrunchifyGetPingStatusWithExecutorService {
-	private static final int MYTHREADS = 100;
+	private static final int MYTHREADS = 10;
  
 	public static void main(String args[]) throws Exception {
 		ExecutorService executor = Executors.newFixedThreadPool(MYTHREADS);

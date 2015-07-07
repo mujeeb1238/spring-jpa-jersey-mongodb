@@ -26,7 +26,6 @@ import com.beee.sample.services.BeeeMainService;
 
 @Component
 @Path("beee")
-@Scope("singleton")
 public class BeeeResourceApi {
 
 	private static final ExecutorService TASK_EXECUTOR = Executors
