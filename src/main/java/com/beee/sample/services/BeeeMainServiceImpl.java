@@ -41,7 +41,7 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 		return "Hello world";
 	}
 	
-    @Cacheable("contactNumbers")
+    @Cacheable("contactNumber")
 	@Override
 	public String convertAndGet(String contactNumber) {
 		return GSON.toJson(beeeDao.findOne(contactNumber));

@@ -29,7 +29,7 @@
 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
 	  <property name="caches">
 	    <set>
-	      	<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="contactNumbers">
+	      	<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="contactNumber">
 	    	</bean>
 	    </set>
 	  </property>
