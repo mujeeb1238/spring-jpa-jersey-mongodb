@@ -9,4 +9,6 @@ public interface BeeeMainService {
 
 	public String convertAndGet(String jsonBody);
 
+	public String retrieveAllUsers();
+
 }

@@ -3,6 +3,7 @@ package com.beee.sample.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.beee.sample.dao.BeeeDao;
@@ -11,7 +12,6 @@ import com.beee.sample.data.User;
 import com.beee.sample.data.UserData;
 import com.beee.sample.exception.UserDefinedErrorMessage;
 import com.google.gson.Gson;
-import org.springframework.cache.annotation.Cacheable;
 
 @Service
 public class BeeeMainServiceImpl implements BeeeMainService{
@@ -28,16 +28,15 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 	
 	@Override
 	public String convertAndProcess(String json) {
-		UserData user = (UserData)GSON.fromJson(json, UserData.class);	
+		UserData user = (UserData)GSON.fromJson(json, UserData.class);
 		User persistUser =  User.fromJson(user.getContactNumber(), user.getTotalExperience(), user.getJobTitle(), user.getName(), user.getProfessionalSummary(),user.getMutualContacts(),user.isDeleted());
-		System.out.println("user: "+beeeDao.findOne(persistUser.getContactNumber()));
 		if(null == beeeDao.findOne(persistUser.getContactNumber())){
 			
 			List<MutualContacts> mt = persistUser.getMutualContacts();
 			UserData returnData = new UserData();
 			for(MutualContacts mct: mt){
 				if(null!=beeeDao.findOne(mct.getContactNumber())){
-					returnData.getMutualContacts().add(mct);
+					returnData.addIndividualMutualContacts(mct);
 				}
 			}
 			User savedUser = beeeDao.saveUser(persistUser);
@@ -58,4 +57,10 @@ public class BeeeMainServiceImpl implements BeeeMainService{
 	public String convertAndGet(String contactNumber) {
 		return GSON.toJson(beeeDao.findOne(contactNumber));
 	}
+    
+    @Override
+    public String retrieveAllUsers() {    	
+    	List<User> allUsers = beeeDao.finaAllUser();
+    	return GSON.toJson(allUsers);
+    }
 }

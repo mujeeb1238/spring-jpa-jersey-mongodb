@@ -96,5 +96,32 @@ public class BeeeResourceApi {
 			}
 		});
 	}
+	
+	@GET
+	@Path("/retrieveAllUsersAsync")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void retrieveAllUsersAsync(
+			@Suspended final AsyncResponse ar) {
+
+		TASK_EXECUTOR.submit(new Runnable() {
+
+			public void run() {
+				String ud = service.retrieveAllUsers();
+				ar.resume(Response.status(Status.OK).entity(ud).build());
+			}
+		});
+	}
+	
+	@GET
+	@Path("/retrieveAllUsersSync")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retrieveAllUsersSync() {
+		String ud = service.retrieveAllUsers();
+		return Response.status(Status.OK).entity(ud).build();
+	}
+	
+	
 
 }

@@ -114,6 +114,11 @@ public class UserData implements Serializable{
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	public void addIndividualMutualContacts(MutualContacts mct) {
+		this.mutualContacts.add(mct);
+		
+	}
 	
 	
 }

@@ -26,8 +26,8 @@ public class BeeeDaoImpl implements BeeeDao{
 
 	@Override
 	public List<User> finaAllUser() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findAll();
+		
 	}
 
 	@Override
