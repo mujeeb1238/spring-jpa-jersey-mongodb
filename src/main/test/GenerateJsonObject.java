@@ -13,7 +13,7 @@ public class GenerateJsonObject{
 	
 	public static void main(String[] agrs){
 		
-		final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		final Gson gson = new GsonBuilder()/*.setPrettyPrinting()*/.create();
 		List<MutualContacts> mc = new ArrayList<MutualContacts>();
 		UserData ud = new UserData();
 		ud.setContactNumber("9550723467");
@@ -22,8 +22,8 @@ public class GenerateJsonObject{
 		ud.setName("Syed Mujeeb ur Rahman");
 		ud.setProfessionalSummary("openbilling system developer and open source contributer");
 		ud.setTotalExperience("8 years");
-		long contactNumber = 8000060000L;		
-		for(int i=0; i<2; i++){
+		long contactNumber = 8000090000L;		
+		for(int i=0; i<500; i++){
 			MutualContacts mcobj = new MutualContacts();
 			mcobj.setContactNumber(""+contactNumber);
 			mcobj.setName("Mujeeb: "+contactNumber);

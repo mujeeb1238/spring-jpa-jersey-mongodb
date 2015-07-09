@@ -1,6 +1,6 @@
 package com.beee.sample.exception;
 
-public class UserDefinedErrorMessage {
+public final class UserDefinedErrorMessage {
 
 	private String message;
 	private String reason;
