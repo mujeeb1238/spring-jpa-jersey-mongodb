@@ -42,20 +42,49 @@ public class BeeeResourceApi {
 	}
 
 	@POST
-	@Path("/registerUser")
+	@Path("/registerUserSync")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response sayHello(final String jsonBody) {
+	public Response sayHelloSync(final String jsonBody) {
 
 		String ud = service.convertAndProcess(jsonBody);
 		return Response.status(Status.OK).entity(ud).build();
 	}
-
-	@GET
-	@Path("/retrieveUser")
+	
+	
+	@POST
+	@Path("/registerUserAsync")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void retrieveUser(
+	public void sayHelloAsync(final String jsonBody, @Suspended final AsyncResponse ar) {
+		
+		TASK_EXECUTOR.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				String ud = service.convertAndProcess(jsonBody);
+				ar.resume(Response.status(Status.OK).entity(ud).build());				
+			}
+		});
+	}
+
+	@GET
+	@Path("/retrieveUserSync")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retrieveUserSync(
+			@QueryParam("contactNumber") final String contactNumbere) {
+
+		String ud = service.convertAndGet(contactNumbere);
+		return Response.status(Status.OK).entity(ud).build();
+
+	}
+
+	@GET
+	@Path("/retrieveUserAsync")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void retrieveUserAsync(
 			@QueryParam("contactNumber") final String contactNumbere,
 			@Suspended final AsyncResponse ar) {
 
